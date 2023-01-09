@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import router from "./routes/index.route.js";
 
 const app = express();
 
@@ -12,9 +13,7 @@ connectDB();
 
 const PORT = Number(process.env.PORT || 3030);
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/api/v1", router);
 
 app.listen(PORT, () => {
   console.log(`Server running at PORT: ${PORT}`);

@@ -5,9 +5,9 @@ const createTodo = async (newTodo) => {
   return await todo.save();
 };
 
-const getTodoById = async (id) => {
-  const todo = await Todo.findById(id);
-  return todo;
+const getTodo = async (filter) => {
+  const todos = await Todo.find(filter);
+  return todos;
 };
 
 const updateTodo = async (filter, update) => {
@@ -17,6 +17,7 @@ const updateTodo = async (filter, update) => {
 
 const deleteTodo = async (filter) => {
   const todo = await Todo.deleteOne(filter);
+  return todo;
 };
 
-export default { createTodo, getTodoById, updateTodo, deleteTodo };
+export { createTodo, getTodo, updateTodo, deleteTodo };

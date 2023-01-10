@@ -7,7 +7,8 @@ import {
 
 const getTodoController = async (req, res, next) => {
   const todos = await getTodo({});
-  res.json(todos);
+  res.render("index", { todosData: todos });
+  //   res.json(todos);
 };
 
 const createTodoController = async (req, res, next) => {

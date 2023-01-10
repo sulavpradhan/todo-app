@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// parse body params and attach then to req.body
-// app.use(bodyParser.json());
+// set view engine
+app.set("view engine", "hbs");
 
 // connect to DB
 connectDB();

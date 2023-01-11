@@ -8,7 +8,7 @@ import {
 const getTodoController = async (req, res, next) => {
   const todos = await getTodo(req.query);
   if (req.query._id) {
-    res.render("editTodo");
+    res.render("editTodo", { data: todos });
   } else {
     res.render("index", { todosData: todos });
   }
@@ -26,8 +26,10 @@ const createTodoController = async (req, res, next) => {
   res.json(todo);
 };
 const updateTodoController = async (req, res, next) => {
-  const todo = await updateTodo(req.query, req.body);
-  res.json(todo);
+  console.log("this is update body .>>>>>>", req.body);
+  res.send(req.body);
+  // const todo = await updateTodo(req.query, req.body);
+  // res.json(todo);
 };
 
 const deleteTodoController = async (req, res, next) => {

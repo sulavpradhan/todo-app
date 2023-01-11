@@ -1,13 +1,14 @@
 import Joi from "joi";
 
 const filterSchema = Joi.object({
-  id: Joi.string().alphanum().required(),
+  _id: Joi.string().alphanum().required(),
 });
 
 const updateSchema = Joi.object({
   name: Joi.string(),
   description: Joi.string(),
   date: Joi.date().min(new Date()),
+  done: Joi.boolean(),
 });
 
 const updateTodoValidator = async (req, res, next) => {

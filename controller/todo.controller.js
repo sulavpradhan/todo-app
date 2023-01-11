@@ -14,6 +14,13 @@ const getTodoController = async (req, res, next) => {
   }
 };
 
+const getUpcommingTodoController = async (req, res, next) => {
+  const todos = await getTodo({ date: { $gt: new Date() } });
+  // res.render("index", { todosData: todos });
+  console.log(todos);
+  res.json(todos);
+};
+
 const createTodoController = async (req, res, next) => {
   const todo = await createTodo(req.body);
   res.json(todo);
@@ -34,4 +41,5 @@ export {
   createTodoController,
   updateTodoController,
   deleteTodoController,
+  getUpcommingTodoController,
 };

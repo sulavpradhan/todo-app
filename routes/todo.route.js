@@ -3,12 +3,17 @@ import {
   createTodoController,
   deleteTodoController,
   getTodoController,
+  getUpcommingTodoController,
   updateTodoController,
 } from "../controller/todo.controller.js";
 import { createTodoValidator } from "../validators/create.validator.js";
 import { updateTodoValidator } from "../validators/update.validator.js";
 
 const router = express.Router();
+
+router.get("/get-todo", getTodoController);
+
+router.get("/get-upcomming-todo", getUpcommingTodoController);
 
 router.get("/get-todo", getTodoController);
 

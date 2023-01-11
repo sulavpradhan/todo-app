@@ -16,6 +16,6 @@ router.post("/create-todo", createTodoValidator, createTodoController);
 
 router.patch("/update-todo", updateTodoValidator, updateTodoController);
 
-router.delete("/delete-todo", deleteTodoController);
+router.post("/delete/:id", deleteTodoController);
 
 export default router;

@@ -6,9 +6,12 @@ import {
 } from "../repsitories/todo.repository.js";
 
 const getTodoController = async (req, res, next) => {
-  const todos = await getTodo({});
-  res.render("index", { todosData: todos });
-  //   res.json(todos);
+  const todos = await getTodo(req.query);
+  if (req.query._id) {
+    res.render("editTodo");
+  } else {
+    res.render("index", { todosData: todos });
+  }
 };
 
 const createTodoController = async (req, res, next) => {
@@ -21,8 +24,9 @@ const updateTodoController = async (req, res, next) => {
 };
 
 const deleteTodoController = async (req, res, next) => {
-  const todo = await deleteTodo(req.body);
-  res.json(todo);
+  const id = req.params.id;
+  const todo = await deleteTodo({ _id: id });
+  res.redirect("/api/v1/todo/get-todo");
 };
 
 export {

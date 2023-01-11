@@ -21,6 +21,13 @@ const getUpcommingTodoController = async (req, res, next) => {
   res.json(todos);
 };
 
+const getDoneTodoController = async (req, res, next) => {
+  const todos = await getTodo({ done: true });
+  // res.render("index", { todosData: todos });
+  console.log(todos);
+  res.json(todos);
+};
+
 const createTodoController = async (req, res, next) => {
   const todo = await createTodo(req.body);
   res.json(todo);
@@ -44,4 +51,5 @@ export {
   updateTodoController,
   deleteTodoController,
   getUpcommingTodoController,
+  getDoneTodoController,
 };

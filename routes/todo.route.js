@@ -2,6 +2,7 @@ import express from "express";
 import {
   createTodoController,
   deleteTodoController,
+  getDoneTodoController,
   getTodoController,
   getUpcommingTodoController,
   updateTodoController,
@@ -15,11 +16,11 @@ router.get("/get-todo", getTodoController);
 
 router.get("/get-upcomming-todo", getUpcommingTodoController);
 
-router.get("/get-todo", getTodoController);
+router.get("/get-done-todo", getDoneTodoController);
 
 router.post("/create-todo", createTodoValidator, createTodoController);
 
-router.patch("/update-todo", updateTodoValidator, updateTodoController);
+router.post("/update-todo", updateTodoValidator, updateTodoController);
 
 router.post("/delete/:id", deleteTodoController);
 

@@ -13,20 +13,59 @@
 
   </head>
   <body style="padding: 24px">
-    <h1 class="h1">todos</h1>
+    <h1 class="h1">Create todo</h1>
 
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Add a todo"
-        aria-label="Recipient's username"
-        aria-describedby="button-addon2"
-      />
-      <button class="btn btn-outline-success" type="button" id="button-addon2">
-        Add
-      </button>
-    </div>
+    <form
+      class="row g-3 needs-validation"
+      method="post"
+      action="http://localhost:3030/api/v1/todo/create-todo"
+      novalidate
+    >
+      <div class="col-md-9">
+        <label for="name" class="form-label">Todo name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          required
+        />
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-sm">
+        <label for="date" class="form-label">Date</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="date"
+          value="date"
+          name="date"
+          required
+        />
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          required
+        />
+        <div class="invalid-feedback">
+          Please provide description
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Save todo</button>
+      </div>
+    </form>
+    <h1 class="h1">todos</h1>
     <table class="table">
       <tr>
         <th scope="col">#</th>
@@ -114,5 +153,13 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    <script>// Example starter JavaScript for disabling form submissions if
+      there are invalid fields (function () { 'use strict' // Fetch all the
+      forms we want to apply custom Bootstrap validation styles to var forms =
+      document.querySelectorAll('.needs-validation') // Loop over them and
+      prevent submission Array.prototype.slice.call(forms) .forEach(function
+      (form) { form.addEventListener('submit', function (event) { if
+      (!form.checkValidity()) { event.preventDefault() event.stopPropagation() }
+      form.classList.add('was-validated') }, false) }) })()</script>
   </body>
 </html>

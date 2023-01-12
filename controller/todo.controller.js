@@ -33,7 +33,7 @@ const getDoneTodoController = async (req, res, next) => {
 
 const createTodoController = async (req, res, next) => {
   const todo = await createTodo(req.body);
-  res.json(todo);
+  res.redirect("/api/v1/todo/get-todo");
 };
 const updateTodoController = async (req, res, next) => {
   const todo = await updateTodo(req.query, req.body);

@@ -22,7 +22,7 @@ Use the command yarn start or npm start to start the server.
 
 ### Step 5:
 
-Go to url ---- to see the website.
+Go to url `http://localhost:3030/api/v1/todo/get-todo` to see the website.
 
 # API Documentation
 

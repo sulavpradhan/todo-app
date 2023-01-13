@@ -18,8 +18,7 @@
     <script>
       const validateForm = ()=>{
         const dateValue = document.getElementById("date").value
-        console.log(dateValue)
-        if(new Date(dateValue)){
+        if(new Date(dateValue) == "Invalid Date"){
           document.getElementById("dateErrMsg").innerHTML = "* Enter valid date"
           return false
         }
@@ -81,7 +80,7 @@
         />
       </div>
       <div class="col-12">
-        <button class="btn btn-primary" type="submi" >Save todo</button>
+        <button class="btn btn-primary" type="submit" >Save todo</button>
       </div>
     </form>
     <h1 class="h1">todos</h1>
@@ -90,39 +89,23 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Date</th>
-        <th scope="col">time</th>
+        <th scope="col">Time</th>
         <th scope="col" colspan="2">
+        <a href="http://localhost:3030/api/v1/todo/get-upcomming-todo" >
+            <div class="form-check form-check-inline upcomming">
+              Upcomming
+            </div>
+          </a>
+          <a href="http://localhost:3030/api/v1/todo/get-done-todo">
           <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
-            />
-            <label class="form-check-label" for="inlineRadio1">Upcomming</label>
+            Done
           </div>
+          </a>
+          <a href="http://localhost:3030/api/v1/todo/get-todo">
           <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
-            />
-            <label class="form-check-label" for="inlineRadio1">Done</label>
+            All
           </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio3"
-              value="option3"
-              checked
-            />
-            <label class="form-check-label" for="inlineRadio1">All</label>
-          </div>
+          </a>
         </th>
       </tr>
       {{#each todosData}}
@@ -130,7 +113,7 @@
           <td>{{name}}</td>
           <td>{{description}}</td>
           <td>{{date}}</td>
-          <td>time</td>
+          <td>{{time}}</td>
           <td>
 
             <form

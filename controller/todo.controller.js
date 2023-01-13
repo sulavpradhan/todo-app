@@ -7,28 +7,54 @@ import {
 
 const getTodoController = async (req, res, next) => {
   const todos = await getTodo(req.query);
+  const returnArray = []
+  for(const todo of todos){
+    returnArray.push({
+      _id:todo._id,
+      name:todo.name,
+      description:todo.description,
+      date:new Date(todo.date).toLocaleDateString(),
+      time:new Date(todo.date).toLocaleTimeString()
+    })
+  }
+
   if (req.query._id) {
-    res.render("editTodo", {
-      data: todos,
-      defaultDate: new Date(todos[0].date).toLocaleTimeString(),
-    });
+    res.render("editTodo", { data: returnArray });
   } else {
-    res.render("index", { todosData: todos });
+    res.render("index", { todosData: returnArray, pageName: "all" });
   }
 };
 
 const getUpcommingTodoController = async (req, res, next) => {
-  const todos = await getTodo({ date: { $gt: new Date() } });
-  // res.render("index", { todosData: todos });
-  console.log(todos);
-  res.json(todos);
+  const todos = await getTodo({ date: { $gt: new Date() }, done: false});
+  const returnArray = []
+  for(const todo of todos){
+    returnArray.push({
+      _id:todo._id,
+      name:todo.name,
+      description:todo.description,
+      date:new Date(todo.date).toLocaleDateString(),
+      time:new Date(todo.date).toLocaleTimeString()
+    })
+  }
+  res.render("index", { todosData: returnArray, pageName: "upcomming" });
+ 
 };
 
 const getDoneTodoController = async (req, res, next) => {
   const todos = await getTodo({ done: true });
-  // res.render("index", { todosData: todos });
-  console.log(todos);
-  res.json(todos);
+  const returnArray = []
+  for(const todo of todos){
+    returnArray.push({
+      _id:todo._id,
+      name:todo.name,
+      description:todo.description,
+      date:new Date(todo.date).toLocaleDateString(),
+      time:new Date(todo.date).toLocaleTimeString()
+    })
+  }
+  res.render("index", { todosData: returnArray, pageName: "done" });
+
 };
 
 const createTodoController = async (req, res, next) => {
